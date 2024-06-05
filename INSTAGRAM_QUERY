@@ -1,10 +1,12 @@
 /* 1) Find the five oldest instagram users. */
+/* We want to reward the five oldest users. */
 
 SELECT * FROM USERS 
 ORDER BY CREATED_AT 
 LIMIT BY 5;
 
 /* 2) What day of the week do most users register on ? */
+/* The company is planning to launch a campaign for which it would like to advertise on the busiest day of the week. */
 
 SELECT 
   DAYNAME(CREATED_AT) AS DAY,
@@ -14,6 +16,7 @@ GROUP BY DAY
 ORDER BY TOTAL DESC;
 
 /* 3) Find the users who have never posted a photo. */
+/* We want to send an email to the inactive users. */
 
 SELECT USERNAME FROM USERS
 LEFT JOIN PHOTOS
@@ -21,6 +24,7 @@ ON PHOTOS.USER_ID = USERS.ID
 WHERE PHOTOS.ID IS NULL;
 
 /* 4) Find the most liked photo and the user who posted it. */
+/* The most liked photo will be posted on the instagram page of the company. */
 
 SELECT USERNAME ,
        PHOTOS.IMAGE_URL,
@@ -40,6 +44,7 @@ LIMIT 1;
 SELECT((SELECT COUNT(*) FROM PHOTOS)/(SELECT COUNT(*) FROM USERS));
 
 /* 6) Find the top 5 most commonly used hashtags. /*
+/* The company wants to know the most likef category of photos which can be used in advertisement of campaign. */
 
 SELECT TAG_NAME,
        COUNT(*) AS TOTAL
